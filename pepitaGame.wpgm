@@ -10,6 +10,6 @@ program pepitaGame {
 	//Valor por defecto game.ground("ground.png")
 	game.addVisualCharacter(pepita)
 	game.addVisual(silvestre)
-
+	
 	game.start()	
 }

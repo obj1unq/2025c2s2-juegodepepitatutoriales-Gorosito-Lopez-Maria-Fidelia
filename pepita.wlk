@@ -15,7 +15,13 @@ object pepita {
 		return energia
 	}
 
-	method image() = "pepita.png"
+	method image(){
+		if (self.atrapadaPor(silvestre)){
+			return "pepita-gris.png"
+		} else{
+			return  "pepita.png"
+		}
+	}
 
 	method position(){
 		return position
@@ -23,6 +29,10 @@ object pepita {
 
 	method position(_position){
 		position = _position
+	}
+
+	method atrapadaPor(personaje){
+		return self.position() == personaje.position()
 	}
 
 }
