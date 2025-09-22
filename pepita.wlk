@@ -1,6 +1,7 @@
 
 object pepita {
 	var energia = 100
+	var position = game.center()
 
 	method comer(comida) {
 		energia = energia + comida.energiaQueOtorga()
@@ -13,6 +14,43 @@ object pepita {
 	method energia() {
 		return energia
 	}
+
+	method image() = "pepita.png"
+
+	method position(){
+		return position
+	}
+
+	method position(_position){
+		position = _position
+	}
+
+}
+
+object silvestre{
+	var position = game.origin()
+
+	method centrar(){
+		position = game.center()
+	}
+	method derecha(){
+		position = position.right(1)
+	}
+
+	method izquierda(){
+		position = position.left(1)
+	}
+
+	method image() = "silvestre.png"
+
+	method position(){
+		return game.at(pepita.position().x(), 0)
+	}
+
+	method position(_position){
+		position = _position
+	}
+	
 
 }
 
