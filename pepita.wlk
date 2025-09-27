@@ -1,7 +1,9 @@
 
 object pepita {
 	var energia = 100
-	var position = game.center()
+	var property position = game.center()
+	var meta = nido
+
 
 	method comer(comida) {
 		energia = energia + comida.energiaQueOtorga()
@@ -14,26 +16,43 @@ object pepita {
 	method energia() {
 		return energia
 	}
+	method derecha(){
+		position = position.right(1)
+	}
 
-	method image(){
+	method izquierda(){
+		position = position.left(1)
+	}
+
+	method abajo(){
+		position = position.down(1)
+	}
+
+	method arriba(){
+		position = position.up(1)
+	}
+
+	method estadoDePepita(){
 		if (self.atrapadaPor(silvestre)){
-			return "pepita-gris.png"
-		} else{
-			return  "pepita.png"
+			return "-gris"
+		} else if(meta.estaEnElNido(self)){
+			return "-grande"
+		}
+		else{
+			return ""
 		}
 	}
 
-	method position(){
-		return position
+	method image(){
+		return "pepita" + self.estadoDePepita() + ".png"
 	}
 
-	method position(_position){
-		position = _position
-	}
 
 	method atrapadaPor(personaje){
 		return self.position() == personaje.position()
 	}
+
+	method hacerPepitaGrande() = "pepita-grande.png"
 
 }
 
@@ -42,13 +61,6 @@ object silvestre{
 
 	method centrar(){
 		position = game.center()
-	}
-	method derecha(){
-		position = position.right(1)
-	}
-
-	method izquierda(){
-		position = position.left(1)
 	}
 
 	method image() = "silvestre.png"
@@ -64,3 +76,12 @@ object silvestre{
 
 }
 
+object nido {
+  method image() = "nido.png"
+
+  method position() = game.at(5,5)
+
+  method estaEnElNido(personaje){
+	return personaje.position() == self.position()
+  }
+}
