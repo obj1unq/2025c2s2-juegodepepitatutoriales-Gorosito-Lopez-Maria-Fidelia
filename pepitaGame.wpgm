@@ -13,11 +13,14 @@ program pepitaGame {
 	game.addVisual(manzana)
 	game.addVisual(pepita)
 	game.addVisual(alpiste)
-	game.addVisual(bloque)
-	game.whenCollideDo(manzana, {pepita => pepita.comer(manzana)})
-	game.whenCollideDo(nido , {pepita => pepita.ganar()})
-	game.whenCollideDo(bloque , {pepita => pepita.chocar()})
+	game.addVisual(muro)
 	game.whenCollideDo(alpiste, {pepita => pepita.comer(alpiste)})
+	game.whenCollideDo(manzana, {pepita => pepita.comer(manzana)})
+	game.whenCollideDo(nido , {pepita => pepita.llegarAlNido()})
+	game.whenCollideDo(silvestre, {pepita => pepita.enSilvestre()})
+	game.whenCollideDo(muro , {pepita => pepita.chocar(muro)})
+	game.showAttributes(pepita)
+	
 	config.configTeclas()
 	game.start()	
 }
