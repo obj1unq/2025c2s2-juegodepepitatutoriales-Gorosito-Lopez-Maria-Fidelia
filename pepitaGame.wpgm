@@ -8,7 +8,19 @@ program pepitaGame {
 	game.cellSize(50) 		//valor por defecto 50
 	//search assets in assets folder, for example, for the background
 	//Valor por defecto game.ground("ground.png")
+	game.addVisual(silvestre)
+	game.addVisual(nido)
+	game.addVisual(manzana)
+	game.addVisual(pepita)
+	game.addVisual(alpiste)
+	game.addVisual(muro)
+	game.whenCollideDo(alpiste, {pepita => pepita.comer(alpiste)})
+	game.whenCollideDo(manzana, {pepita => pepita.comer(manzana)})
+	game.whenCollideDo(nido , {pepita => pepita.llegarAlNido()})
+	game.whenCollideDo(silvestre, {pepita => pepita.enSilvestre()})
+	game.whenCollideDo(muro , {pepita => pepita.chocar(muro)})
+	game.showAttributes(pepita)
 	
-	//game.addVisual(pepita)
+	config.configTeclas()
 	game.start()	
 }
